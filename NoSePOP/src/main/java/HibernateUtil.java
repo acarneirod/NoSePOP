@@ -17,8 +17,8 @@ public class HibernateUtil {
         Configuration configuration = new Configuration();
         configuration.configure();
         // Se registran las clases que hay que mapear con cada tabla de la base de datos
-        //configuration.addAnnotatedClass(Clase1.class);
-        //configuration.addAnnotatedClass(Clase2.class);
+        configuration.addAnnotatedClass(Dept.class);
+        configuration.addAnnotatedClass(Emp.class);
         //configuration.addAnnotatedClass(Clase3.class);
     //. . .
 
