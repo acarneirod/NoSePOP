@@ -3,11 +3,11 @@
         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost/basededatos</property>
-        <property name="hibernate.connection.username">usuario</property>
-        <property name="hibernate.connection.password">contraseña</property>
-        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://easybyte.club:2224/NCPOP</property>
+        <property name="hibernate.connection.username">acarneirod@fpcoruna.afundacion.org</property>
+        <property name="hibernate.connection.password">acarneiro@Servo2021*</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL82Dialect</property>
         <property name="hibernate.show_sql">true</property>
     </session-factory>
 </hibernate-configuration>
