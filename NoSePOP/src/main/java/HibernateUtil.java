@@ -1,7 +1,9 @@
+import java.util.Properties;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
 public class HibernateUtil {
@@ -13,13 +15,22 @@ public class HibernateUtil {
      * Crea la factoria de sesiones
      */
     public static void buildSessionFactory() {
+        Properties propiedades = new Properties();
+        propiedades.put(Environment.DRIVER,"org.postgresql.Driver");
+        propiedades.put(Environment.URL,"dbc:postgresql://easybyte.club:2224/NCPOP");
+        propiedades.put(Environment.USER,"acarneirod@fpcoruna.afundacion.org");
+        propiedades.put(Environment.PASS, "acarneiro@Servo2021*");
+        propiedades.put(Environment.DIALECT, "org.hibernate.dialect.PostgreSQL82Dialect");
+        propiedades.put(Environment.SHOW_SQL, "true");
+
+
 
         Configuration configuration = new Configuration();
+        configuration.setProperties(propiedades);
         configuration.configure();
         // Se registran las clases que hay que mapear con cada tabla de la base de datos
-        configuration.addAnnotatedClass(Dept.class);
-        configuration.addAnnotatedClass(Emp.class);
-        //configuration.addAnnotatedClass(Clase3.class);
+        configuration.addAnnotatedClass(Deptartamentos.class);
+        configuration.addAnnotatedClass(Empleados.class);
     //. . .
 
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(
@@ -28,9 +39,10 @@ public class HibernateUtil {
     }
 
     /**
-     * Abre una nueva sesión
+     * Abre una nueva sesion
      */
     public static void openSession() {
+
         session = sessionFactory.openSession();
     }
 
