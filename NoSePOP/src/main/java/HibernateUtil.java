@@ -42,7 +42,6 @@ public class HibernateUtil {
      * Abre una nueva sesion
      */
     public static void openSession() {
-
         session = sessionFactory.openSession();
     }
 
@@ -69,4 +68,22 @@ public class HibernateUtil {
         if (sessionFactory != null)
             sessionFactory.close();
     }
+
+    public static void addObject(Object object){
+        Session session = HibernateUtil.getCurrentSession();
+        session.beginTransaction();
+        session.save(object);
+        session.getTransaction().commit();
+        session.close();
+    }
+
+    public static void removeObject(Object object){
+        Session session = HibernateUtil.getCurrentSession();
+        session.beginTransaction();
+        session.delete(object);
+        session.getTransaction().commit();
+        session.close();
+    }
+
+
 }
