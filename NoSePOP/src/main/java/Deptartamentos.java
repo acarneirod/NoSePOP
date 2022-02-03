@@ -7,14 +7,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "dept")
 public class Deptartamentos {
-    @deptno
+    @Id
     //Numero del departamento
     @Column(name = "deptno")
     private int deptno;
     //Nombre del departamento
     @Column(name = "dname")
     private String dname;
-    //Localización del departamento
+    //Localizaciï¿½n del departamento
     @Column(name = "loc")
     private String loc;
 

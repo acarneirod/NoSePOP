@@ -17,8 +17,8 @@ public class HibernateUtil {
     public static void buildSessionFactory() {
         Properties propiedades = new Properties();
         propiedades.put(Environment.DRIVER,"org.postgresql.Driver");
-        propiedades.put(Environment.URL,"dbc:postgresql://easybyte.club:2224/NCPOP");
-        propiedades.put(Environment.USER,"acarneirod@fpcoruna.afundacion.org");
+        propiedades.put(Environment.URL,"jdbc:postgresql://easybyte.club:2224/NCPOP");
+        propiedades.put(Environment.USER,"acarneiro");
         propiedades.put(Environment.PASS, "acarneiro@Servo2021*");
         propiedades.put(Environment.DIALECT, "org.hibernate.dialect.PostgreSQL82Dialect");
         propiedades.put(Environment.SHOW_SQL, "true");

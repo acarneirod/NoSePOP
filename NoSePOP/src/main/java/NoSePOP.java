@@ -1,8 +1,11 @@
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.hibernate.service.ServiceRegistry;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -64,6 +67,7 @@ public class NoSePOP {
                 System.out.println("-----------------------------------------------------------------------------------------------------");
                 System.out.println("\nMOSTRANDO TABLA EMPLEADOS ... ");
                 System.out.println("-----------------------------------------------------------------------------------------------------");
+                listadoTablas();
                 break;
             case 1:
                 System.out.println("-----------------------------------------------------------------------------------------------------");
@@ -96,6 +100,18 @@ public class NoSePOP {
         }
         System.out.println("Pulsa Intro para continuar...");
         entrada.nextLine();
+    }
+
+    static void listadoTablas(){
+        HibernateUtil.buildSessionFactory();
+        HibernateUtil.openSession();
+        Session sesion = HibernateUtil.getCurrentSession();
+        Query query = sesion.createQuery("SELECT empno,ename FROM " + Empleados.class.getSimpleName());
+        List<Object[]> listDatos = query.list();
+        for (Object[] datos : listDatos) {
+            System.out.println(datos[0] + "--" + datos[1]);
+        }
+        HibernateUtil.closeSessionFactory();
     }
 
 }

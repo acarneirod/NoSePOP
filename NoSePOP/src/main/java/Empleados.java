@@ -7,8 +7,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "emp")
 public class Empleados {
-    //Número del empleado
-    @empno
+    @Id
+    //Nï¿½mero del empleado
     @Column(name = "empno")
     private int empno;
     //
