@@ -6,7 +6,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "dept")
-public class Deptartamentos {
+public class Departamentos {
     @Id
     //Numero del departamento
     @Column(name = "deptno")
@@ -18,13 +18,13 @@ public class Deptartamentos {
     @Column(name = "loc")
     private String loc;
 
-    public Deptartamentos(int deptno, String dname, String loc) {
+    public Departamentos(int deptno, String dname, String loc) {
         this.deptno = deptno;
         this.dname = dname;
         this.loc = loc;
     }
 
-    public Deptartamentos() {
+    public Departamentos() {
     }
 
     public int getDeptno() {

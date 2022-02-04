@@ -13,21 +13,21 @@ public class Empleados {
     private int empno;
     //
     @Column(name = "ename")
-    private int ename;
+    private String ename;
     @Column(name = "job")
-    private int job;
+    private String job;
     @Column(name = "mgr")
-    private int mgr;
+    private String mgr;
     @Column(name = "hiredate")
-    private int hiredate;
+    private String hiredate;
     @Column(name = "sal")
-    private int sal;
+    private String sal;
     @Column(name = "comm")
-    private int comm;
+    private String comm;
     @Column(name = "deptno")
     private int deptno;
 
-    public Empleados(int empno, int ename, int job, int mgr, int hiredate, int sal, int comm, int deptno) {
+    public Empleados(int empno, String ename, String job, String mgr, String hiredate, String sal, String comm, int deptno) {
         this.empno = empno;
         this.ename = ename;
         this.job = job;
@@ -49,51 +49,51 @@ public class Empleados {
         this.empno = empno;
     }
 
-    public int getEname() {
+    public String getEname() {
         return ename;
     }
 
-    public void setEname(int ename) {
+    public void setEname(String ename) {
         this.ename = ename;
     }
 
-    public int getJob() {
+    public String getJob() {
         return job;
     }
 
-    public void setJob(int job) {
+    public void setJob(String job) {
         this.job = job;
     }
 
-    public int getMgr() {
+    public String getMgr() {
         return mgr;
     }
 
-    public void setMgr(int mgr) {
+    public void setMgr(String mgr) {
         this.mgr = mgr;
     }
 
-    public int getHiredate() {
+    public String getHiredate() {
         return hiredate;
     }
 
-    public void setHiredate(int hiredate) {
+    public void setHiredate(String hiredate) {
         this.hiredate = hiredate;
     }
 
-    public int getSal() {
+    public String getSal() {
         return sal;
     }
 
-    public void setSal(int sal) {
+    public void setSal(String sal) {
         this.sal = sal;
     }
 
-    public int getComm() {
+    public String getComm() {
         return comm;
     }
 
-    public void setComm(int comm) {
+    public void setComm(String comm) {
         this.comm = comm;
     }
 

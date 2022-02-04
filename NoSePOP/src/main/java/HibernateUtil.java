@@ -29,7 +29,7 @@ public class HibernateUtil {
         configuration.setProperties(propiedades);
         configuration.configure();
         // Se registran las clases que hay que mapear con cada tabla de la base de datos
-        configuration.addAnnotatedClass(Deptartamentos.class);
+        configuration.addAnnotatedClass(Departamentos.class);
         configuration.addAnnotatedClass(Empleados.class);
     //. . .
 
