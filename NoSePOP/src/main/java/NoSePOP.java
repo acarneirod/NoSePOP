@@ -96,7 +96,7 @@ public class NoSePOP {
         return opcion;
     }
 
-
+    //METHODS
     static void listadoTablas(){
         HibernateUtil.buildSessionFactory();
         HibernateUtil.openSession();
@@ -165,15 +165,15 @@ public class NoSePOP {
             }
             if (valido = true) emp.setMgr(res);
         }while(!valido);
-        //hiredate
+        //HIREDATE
         do{
             System.out.println("Introduce mgr de empleado: ");
             res = input.nextLine();
             valido=comprobarFecha(res);
         }while(!valido);
-        //sal
+        //SAL
             //TODO
-        //comm
+        //COMM
         do{
             do {
                 System.out.println("Introduce comm de empleado: ");
@@ -184,7 +184,7 @@ public class NoSePOP {
             }
             if (valido = true) emp.setComm(res);
         }while(!valido);
-        //deptno
+        //DEPTNO
         valido = false;
         do {
             try {
@@ -203,6 +203,17 @@ public class NoSePOP {
         postEmp(emp);
     }
 
+    static void postEmp(Empleados emp){
+        HibernateUtil.buildSessionFactory();
+        Session session = HibernateUtil.getCurrentSession();
+        session.beginTransaction();
+        session.save(emp);
+        session.getTransaction().commit();
+        session.close();
+    }
+    //METHODS
+
+    //UTILS
     static boolean comprobarNumerosEnString(String res){
         boolean numeros = false;
         for(int i = 0; i<res.length();i++){
@@ -219,6 +230,7 @@ public class NoSePOP {
 
     static boolean comprobarExisteEmpleado(int id){
         boolean existe = false;
+        //TODO
         if(existe){
             System.out.println("ERROR: El empleado ya se encuentra en la base de datos...");
             System.out.println("Pulsa Intro para continuar ...");
@@ -229,6 +241,7 @@ public class NoSePOP {
 
     static boolean comprobarExisteDepartamento(int deptno){
         boolean existe = false;
+        //TODO
         if(!existe){
             System.out.println("ERROR: El departamento no se encuentra en la base de datos...");
             System.out.println("Pulsa Intro para continuar ...");
@@ -250,14 +263,5 @@ public class NoSePOP {
         }
         return formato;
     }
-
-    static void postEmp(Empleados emp){
-        HibernateUtil.buildSessionFactory();
-        Session session = HibernateUtil.getCurrentSession();
-        session.beginTransaction();
-        session.save(emp);
-        session.getTransaction().commit();
-        session.close();
-    }
-
+    //UTILS
 }
