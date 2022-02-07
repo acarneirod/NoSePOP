@@ -20,10 +20,8 @@ public class HibernateUtil {
         propiedades.put(Environment.URL,"jdbc:postgresql://easybyte.club:2224/NCPOP");
         propiedades.put(Environment.USER,"acarneiro");
         propiedades.put(Environment.PASS, "acarneiro@Servo2021*");
-        propiedades.put(Environment.DIALECT, "org.hibernate.dialect.PostgreSQL82Dialect");
+        propiedades.put(Environment.DIALECT, "org.hibernate.dialect.PostgreSQLDialect");
         propiedades.put(Environment.SHOW_SQL, "true");
-
-
 
         Configuration configuration = new Configuration();
         configuration.setProperties(propiedades);

@@ -1,11 +1,10 @@
-import org.hibernate.annotations.Entity;
-
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "emp")
+@Table(name = "Empleados")
 public class Empleados {
     @Id
     //N�mero del empleado
@@ -17,17 +16,17 @@ public class Empleados {
     @Column(name = "job")
     private String job;
     @Column(name = "mgr")
-    private String mgr;
+    private int mgr;
     @Column(name = "hiredate")
     private String hiredate;
     @Column(name = "sal")
-    private String sal;
+    private int sal;
     @Column(name = "comm")
-    private String comm;
+    private int comm;
     @Column(name = "deptno")
     private int deptno;
 
-    public Empleados(int empno, String ename, String job, String mgr, String hiredate, String sal, String comm, int deptno) {
+    public Empleados(int empno, String ename, String job, int mgr, String hiredate, int sal, int comm, int deptno) {
         this.empno = empno;
         this.ename = ename;
         this.job = job;
@@ -65,11 +64,11 @@ public class Empleados {
         this.job = job;
     }
 
-    public String getMgr() {
+    public int getMgr() {
         return mgr;
     }
 
-    public void setMgr(String mgr) {
+    public void setMgr(int mgr) {
         this.mgr = mgr;
     }
 
@@ -81,19 +80,19 @@ public class Empleados {
         this.hiredate = hiredate;
     }
 
-    public String getSal() {
+    public int getSal() {
         return sal;
     }
 
-    public void setSal(String sal) {
+    public void setSal(int sal) {
         this.sal = sal;
     }
 
-    public String getComm() {
+    public int getComm() {
         return comm;
     }
 
-    public void setComm(String comm) {
+    public void setComm(int comm) {
         this.comm = comm;
     }
 

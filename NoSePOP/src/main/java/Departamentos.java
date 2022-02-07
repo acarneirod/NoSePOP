@@ -1,11 +1,10 @@
-import org.hibernate.annotations.Entity;
-
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "dept")
+@Table(name = "Departamentos")
 public class Departamentos {
     @Id
     //Numero del departamento

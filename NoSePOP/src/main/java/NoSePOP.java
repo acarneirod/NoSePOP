@@ -19,7 +19,8 @@ import java.util.Scanner;
 
 /**
  *
- * @author acuar
+ * @author Adrián Carneiro
+ * @author Jose Guilmar
  */
 public class NoSePOP {
     private static SessionFactory sessionFactory;
@@ -155,34 +156,51 @@ public class NoSePOP {
             if (valido = true) emp.setEname(res);
         }while(!valido);
         //MGR
-        do{
-            do {
-                System.out.println("Introduce mgr de empleado: ");
+        valido = false;
+        do {
+            try {
+                System.out.println("Introduce MGR de empleado: ");
                 res = input.nextLine();
-            }while(res.length()<1||res.length()>30);
-            if(!comprobarNumerosEnString(res)){
-                valido = false;
+            }catch(NumberFormatException nfe) {
+                System.out.println("ERROR: Debe introducir solo números...");
+                System.out.println("Pulsa Intro para continuar ...");
+                input.nextLine();
             }
-            if (valido = true) emp.setMgr(res);
+            valido=true;
+            emp.setMgr(Integer.parseInt(res));
         }while(!valido);
         //HIREDATE
         do{
-            System.out.println("Introduce mgr de empleado: ");
+            System.out.println("Introduce hiredate de empleado: ");
             res = input.nextLine();
             valido=comprobarFecha(res);
         }while(!valido);
         //SAL
-            //TODO
+        do {
+            try {
+                System.out.println("Introduce SAL de empleado: ");
+                res = input.nextLine();
+            }catch(NumberFormatException nfe) {
+                System.out.println("ERROR: Debe introducir solo números...");
+                System.out.println("Pulsa Intro para continuar ...");
+                input.nextLine();
+            }
+            valido=true;
+            emp.setSal(Integer.parseInt(res));
+        }while(!valido);
         //COMM
-        do{
-            do {
+        valido = false;
+        do {
+            try {
                 System.out.println("Introduce comm de empleado: ");
                 res = input.nextLine();
-            }while(res.length()<1||res.length()>30);
-            if(!comprobarNumerosEnString(res)){
-                valido = false;
+            }catch(NumberFormatException nfe) {
+                System.out.println("ERROR: Debe introducir solo números...");
+                System.out.println("Pulsa Intro para continuar ...");
+                input.nextLine();
             }
-            if (valido = true) emp.setComm(res);
+            valido=true;
+            emp.setComm(Integer.parseInt(res));
         }while(!valido);
         //DEPTNO
         valido = false;
@@ -240,7 +258,7 @@ public class NoSePOP {
     }
 
     static boolean comprobarExisteDepartamento(int deptno){
-        boolean existe = false;
+        boolean existe = true;
         //TODO
         if(!existe){
             System.out.println("ERROR: El departamento no se encuentra en la base de datos...");
