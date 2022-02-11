@@ -34,6 +34,9 @@ public class NoSePOP {
         HibernateUtil.buildSessionFactory();
         HibernateUtil.openSession();
         input = new Scanner(System.in);
+
+        new MainFrame();
+
         int opcion;
         do {
             opcion = menu();
@@ -536,6 +539,26 @@ public class NoSePOP {
             }
         }
         return numeros;
+    }
+
+    /**
+     * Método que comprueba si String contiene letras.
+     *
+     * @param res String a comprobar.
+     * @return Contiene letras o no.
+     */
+    static boolean comprobarLetrasEnString(String res){
+        boolean letras = false;
+        for(int i = 0; i<res.length();i++){
+            if(Character.isLetter(res.charAt(i))){
+                System.out.println("ERROR: No puede introducir numeros...");
+                System.out.println("Pulsa Intro para continuar ...");
+                input.nextLine();
+                letras = true;
+                break;
+            }
+        }
+        return letras;
     }
 
     /**

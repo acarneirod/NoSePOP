@@ -50,9 +50,9 @@ public class Departamentos {
         this.loc = loc;
     }
 
-    @Override
-    public String toString() {
-        return "Deptartamentos{" + "deptno=" + deptno + ", dname=" + dname + ", loc=" + loc + '}';
+    public Object[] contenido(){
+        String[] content = {String.valueOf(getDeptno()),String.valueOf(getDname()),String.valueOf(getLoc())};
+        return content;
     }
     
     

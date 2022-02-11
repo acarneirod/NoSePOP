@@ -104,11 +104,9 @@ public class Empleados {
         this.deptno = deptno;
     }
 
-    @Override
-    public String toString() {
-        return "Emp{" + "empno=" + empno + ", ename=" + ename + ", job=" + job + ", mgr=" + mgr + ", hiredate=" + hiredate + ", sal=" + sal + ", comm=" + comm + ", deptno=" + deptno + '}';
+    public Object[] contenido() {
+        String[] content = {String.valueOf(getEmpno()),String.valueOf(getEname()),String.valueOf(getJob()),String.valueOf(getMgr()),String.valueOf(getHiredate()),String.valueOf(getSal()),String.valueOf(getComm()),String.valueOf(getDeptno())};
+        return content;
     }
-    
-    
-    
+
 }
