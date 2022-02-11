@@ -1,7 +1,6 @@
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.dialect.AbstractHANADialect;
 import org.hibernate.query.Query;
 import org.hibernate.service.ServiceRegistry;
 
@@ -56,13 +55,20 @@ public class NoSePOP {
                 case 4:
                     System.out.println("\n\tMOSTRANDO INFORMACIÓN DE LA TABLA EMPLEADOS Y LA TABLA DEPARTAMENTOS");
                     mostrarGeneral();
+                    break;
                 case 5:
-                    System.out.println("\n\tFUNCIONALIDAD EXTRA.");
+                    System.out.println("\n\tINTRODUCIR DEPARTAMENTO ...");
+                    añadirDepartamento();
+                    break;
                 case 6:
+                    System.out.println("\n\tELIMINAR DEPARTAMENTO ...");
+                    borrarDepartamento();
+                    break;
+                case 7:
                     System.out.println("GRACIAS POR UTILIZAR EL PROGRAMA, BUEN DÍA. VUELVE PRONTO!!!");
                     break;
             }
-        }while(opcion!=6);
+        }while(opcion!=7);
         System.out.println("Pulsa Intro para continuar...");
         input.nextLine();
         // Se cierra la conexión a la BBDD y la entrada por teclado.
@@ -80,14 +86,15 @@ public class NoSePOP {
             System.out.println("2. Introducir empleado.");
             System.out.println("3. Eliminar empleado.");
             System.out.println("4. Mostrar información de Tabla Empleados y Tabla Departamentos.");
-            System.out.println("5. Funcionalidad extra.");
-            System.out.println("6. Salir.");
+            System.out.println("5. Introducir departamento.");
+            System.out.println("6. Eliminar departamento.");
+            System.out.println("7. Salir.");
 
             try {
                 System.out.println("Elija una opcion: ");
                 opcion = Integer.parseInt(input.nextLine());
 
-                if (opcion < 0 || opcion > 6) {
+                if (opcion < 0 || opcion > 7) {
                     System.out.println("ERROR: Opción Inválida...");
                     System.out.print("Pulsa Intro para continuar...");
                     input.nextLine();
@@ -167,6 +174,71 @@ public class NoSePOP {
             input.nextLine();
         }
         delEmp(emp);
+    }
+
+    static void borrarDepartamento(){
+        String res = null;
+        Departamentos departamento = null;
+        try {
+            do {
+                System.out.println("Introduce numero de departamento: ");
+                res = input.nextLine();
+            }while(!comprobarExisteDepartamento(Integer.parseInt(res)));
+            departamento = getDepartamento(Integer.parseInt(res));
+        }catch(NumberFormatException nfe) {
+            System.out.println("ERROR: Debe introducir solo números...");
+            System.out.println("Pulsa Intro para continuar ...");
+            input.nextLine();
+        }
+        delDep(departamento);
+    }
+
+    static void añadirDepartamento(){
+        String res = null;
+        boolean valido;
+
+        Departamentos departamento = new Departamentos();
+        //DEPTNO
+        valido = false;
+        do {
+            try {
+                do {
+                    System.out.println("Introduce numero de departamento: ");
+                    res = input.nextLine();
+                }while(comprobarExisteDepartamento(Integer.parseInt(res)));
+                valido = true;
+                departamento.setDeptno(Integer.parseInt(res));
+            }catch(NumberFormatException nfe) {
+                System.out.println("ERROR: Debe introducir solo números...");
+                System.out.println("Pulsa Intro para continuar ...");
+                input.nextLine();
+            }
+        }while(!valido);
+        //DNAME
+        do{
+            valido=true;
+            do {
+                System.out.println("Introduce nombre de departamento: ");
+                res = input.nextLine();
+            }while(res.length()<1||res.length()>30);
+            if(comprobarNumerosEnString(res)){
+                valido = false;
+            }
+            if (valido = true) departamento.setDname(res);
+        }while(!valido);
+        //LOC
+        do{
+            valido=true;
+            do {
+                System.out.println("Introduce LOC de departamento: ");
+                res = input.nextLine();
+            }while(res.length()<1||res.length()>30);
+            if(comprobarNumerosEnString(res)){
+                valido = false;
+            }
+            if (valido = true) departamento.setLoc(res);
+        }while(!valido);
+        postDep(departamento);
     }
 
     static void añadirEmpleado(){
@@ -290,6 +362,22 @@ public class NoSePOP {
         session.close();
     }
 
+    static void delDep(Departamentos departamento){
+        Session session = HibernateUtil.getCurrentSession();
+        session.beginTransaction();
+        session.delete(departamento);
+        session.getTransaction().commit();
+        session.close();
+    }
+
+    static void postDep(Departamentos departamento){
+        Session session = HibernateUtil.getCurrentSession();
+        session.beginTransaction();
+        session.save(departamento);
+        session.getTransaction().commit();
+        session.close();
+    }
+
     static void postEmp(Empleados emp){
         Session session = HibernateUtil.getCurrentSession();
         session.beginTransaction();
@@ -338,6 +426,10 @@ public class NoSePOP {
             System.out.println("Pulsa Intro para continuar ...");
             input.nextLine();
             existe = false;
+        }else{
+            System.out.println("El departamento se encuentra en la base de datos...");
+            System.out.println("Pulsa Intro para continuar ...");
+            input.nextLine();
         }
         return existe;
     }
