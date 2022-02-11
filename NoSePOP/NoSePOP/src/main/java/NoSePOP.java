@@ -49,6 +49,7 @@ public class NoSePOP {
                     break;
                 case 3:
                     System.out.println("\n\tELIMINAR EMPLEADO ...");
+                    borrarEmpleado();
                     break;
                 case 4:
                     System.out.println("\n\tMOSTRANDO INFORMACIÓN DE LA TABLA EMPLEADOS Y LA TABLA DEPARTAMENTOS");
@@ -137,6 +138,22 @@ public class NoSePOP {
         HibernateUtil.closeSessionFactory();
     }
 
+    static void borrarEmpleado(){
+        String res = null;
+        Empleados emp = null;
+        try {
+            do {
+                System.out.println("Introduce numero de empleado: ");
+                res = input.nextLine();
+            }while(!comprobarExisteEmpleado(Integer.parseInt(res)));
+            emp = getEmpleado(Integer.parseInt(res));
+        }catch(NumberFormatException nfe) {
+            System.out.println("ERROR: Debe introducir solo números...");
+            System.out.println("Pulsa Intro para continuar ...");
+            input.nextLine();
+        }
+        delEmp(emp);
+    }
 
     static void añadirEmpleado(){
         String res = null;
@@ -248,21 +265,16 @@ public class NoSePOP {
                 input.nextLine();
             }
         }while(!valido);
-
-
-        System.out.println("EMPNO: " + emp.getEmpno());
-        System.out.println("ENAME: " + emp.getEname());
-        System.out.println("JOB: " + emp.getJob());
-        System.out.println("MGR: " + emp.getMgr());
-        System.out.println("HIREDATE: " + emp.getHiredate());
-        System.out.println("SAL: " + emp.getSal());
-        System.out.println("COMM: " + emp.getComm());
-        System.out.println("DEPTNO: " + emp.getDeptno());
-
-
-
-
         postEmp(emp);
+    }
+
+    static void delEmp(Empleados emp){
+        HibernateUtil.buildSessionFactory();
+        Session session = HibernateUtil.getCurrentSession();
+        session.beginTransaction();
+        session.delete(emp);
+        session.getTransaction().commit();
+        session.close();
     }
 
     static void postEmp(Empleados emp){
@@ -299,7 +311,7 @@ public class NoSePOP {
             input.nextLine();
             existe = false;
         }else{
-            System.out.println("El empleado ya se encuentra en la base de datos...");
+            System.out.println("El empleado se encuentra en la base de datos...");
             System.out.println("Pulsa Intro para continuar ...");
             input.nextLine();
         }
