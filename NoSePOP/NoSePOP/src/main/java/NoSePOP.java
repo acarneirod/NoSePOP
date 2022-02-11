@@ -111,7 +111,7 @@ public class NoSePOP {
         return opcion;
     }
 
-    //METHODS
+    //LISTADOS
     static void listadoTablaEmpleados(){
         Session sesion = HibernateUtil.getCurrentSession();
         Query query = sesion.createQuery("FROM Empleados");
@@ -158,89 +158,11 @@ public class NoSePOP {
         }
         System.out.println("---------------------------");
     }
+    //LISTADOS
 
-    static void borrarEmpleado(){
-        String res = null;
-        Empleados emp = null;
-        try {
-            do {
-                System.out.println("Introduce numero de empleado: ");
-                res = input.nextLine();
-            }while(!comprobarExisteEmpleado(Integer.parseInt(res)));
-            emp = getEmpleado(Integer.parseInt(res));
-        }catch(NumberFormatException nfe) {
-            System.out.println("ERROR: Debe introducir solo números...");
-            System.out.println("Pulsa Intro para continuar ...");
-            input.nextLine();
-        }
-        delEmp(emp);
-    }
 
-    static void borrarDepartamento(){
-        String res = null;
-        Departamentos departamento = null;
-        try {
-            do {
-                System.out.println("Introduce numero de departamento: ");
-                res = input.nextLine();
-            }while(!comprobarExisteDepartamento(Integer.parseInt(res)));
-            departamento = getDepartamento(Integer.parseInt(res));
-        }catch(NumberFormatException nfe) {
-            System.out.println("ERROR: Debe introducir solo números...");
-            System.out.println("Pulsa Intro para continuar ...");
-            input.nextLine();
-        }
-        delDep(departamento);
-    }
 
-    static void añadirDepartamento(){
-        String res = null;
-        boolean valido;
-
-        Departamentos departamento = new Departamentos();
-        //DEPTNO
-        valido = false;
-        do {
-            try {
-                do {
-                    System.out.println("Introduce numero de departamento: ");
-                    res = input.nextLine();
-                }while(comprobarExisteDepartamento(Integer.parseInt(res)));
-                valido = true;
-                departamento.setDeptno(Integer.parseInt(res));
-            }catch(NumberFormatException nfe) {
-                System.out.println("ERROR: Debe introducir solo números...");
-                System.out.println("Pulsa Intro para continuar ...");
-                input.nextLine();
-            }
-        }while(!valido);
-        //DNAME
-        do{
-            valido=true;
-            do {
-                System.out.println("Introduce nombre de departamento: ");
-                res = input.nextLine();
-            }while(res.length()<1||res.length()>30);
-            if(comprobarNumerosEnString(res)){
-                valido = false;
-            }
-            if (valido = true) departamento.setDname(res);
-        }while(!valido);
-        //LOC
-        do{
-            valido=true;
-            do {
-                System.out.println("Introduce LOC de departamento: ");
-                res = input.nextLine();
-            }while(res.length()<1||res.length()>30);
-            if(comprobarNumerosEnString(res)){
-                valido = false;
-            }
-            if (valido = true) departamento.setLoc(res);
-        }while(!valido);
-        postDep(departamento);
-    }
-
+    //EMPLEADOS
     static void añadirEmpleado(){
         String res = null;
         boolean valido;
@@ -353,31 +275,22 @@ public class NoSePOP {
         }while(!valido);
         postEmp(emp);
     }
-
-    static void delEmp(Empleados emp){
-        Session session = HibernateUtil.getCurrentSession();
-        session.beginTransaction();
-        session.delete(emp);
-        session.getTransaction().commit();
-        session.close();
+    static void borrarEmpleado(){
+        String res = null;
+        Empleados emp = null;
+        try {
+            do {
+                System.out.println("Introduce numero de empleado: ");
+                res = input.nextLine();
+            }while(!comprobarExisteEmpleado(Integer.parseInt(res)));
+            emp = getEmpleado(Integer.parseInt(res));
+        }catch(NumberFormatException nfe) {
+            System.out.println("ERROR: Debe introducir solo números...");
+            System.out.println("Pulsa Intro para continuar ...");
+            input.nextLine();
+        }
+        delEmp(emp);
     }
-
-    static void delDep(Departamentos departamento){
-        Session session = HibernateUtil.getCurrentSession();
-        session.beginTransaction();
-        session.delete(departamento);
-        session.getTransaction().commit();
-        session.close();
-    }
-
-    static void postDep(Departamentos departamento){
-        Session session = HibernateUtil.getCurrentSession();
-        session.beginTransaction();
-        session.save(departamento);
-        session.getTransaction().commit();
-        session.close();
-    }
-
     static void postEmp(Empleados emp){
         Session session = HibernateUtil.getCurrentSession();
         session.beginTransaction();
@@ -385,23 +298,19 @@ public class NoSePOP {
         session.getTransaction().commit();
         session.close();
     }
-    //METHODS
-
-    //UTILS
-    static boolean comprobarNumerosEnString(String res){
-        boolean numeros = false;
-        for(int i = 0; i<res.length();i++){
-            if(Character.isDigit(res.charAt(i))){
-                System.out.println("ERROR: No puede introducir numeros...");
-                System.out.println("Pulsa Intro para continuar ...");
-                input.nextLine();
-                numeros = true;
-                break;
-            }
-        }
-        return numeros;
+    static void delEmp(Empleados emp){
+        Session session = HibernateUtil.getCurrentSession();
+        session.beginTransaction();
+        session.delete(emp);
+        session.getTransaction().commit();
+        session.close();
     }
-
+    static Empleados getEmpleado(int empno){
+        Session session = HibernateUtil.getCurrentSession();
+        Empleados empleado = session.get(Empleados.class, empno);
+        session.close();
+        return empleado;
+    }
     static boolean comprobarExisteEmpleado(int empno){
         boolean existe = true;
         Empleados empleado = getEmpleado(empno);
@@ -417,7 +326,94 @@ public class NoSePOP {
         }
         return existe;
     }
+    //EMPLEADOS
 
+
+
+    //DEPARTAMENTOS
+    static void añadirDepartamento(){
+        String res = null;
+        boolean valido;
+
+        Departamentos departamento = new Departamentos();
+        //DEPTNO
+        valido = false;
+        do {
+            try {
+                do {
+                    System.out.println("Introduce numero de departamento: ");
+                    res = input.nextLine();
+                }while(comprobarExisteDepartamento(Integer.parseInt(res)));
+                valido = true;
+                departamento.setDeptno(Integer.parseInt(res));
+            }catch(NumberFormatException nfe) {
+                System.out.println("ERROR: Debe introducir solo números...");
+                System.out.println("Pulsa Intro para continuar ...");
+                input.nextLine();
+            }
+        }while(!valido);
+        //DNAME
+        do{
+            valido=true;
+            do {
+                System.out.println("Introduce nombre de departamento: ");
+                res = input.nextLine();
+            }while(res.length()<1||res.length()>30);
+            if(comprobarNumerosEnString(res)){
+                valido = false;
+            }
+            if (valido = true) departamento.setDname(res);
+        }while(!valido);
+        //LOC
+        do{
+            valido=true;
+            do {
+                System.out.println("Introduce LOC de departamento: ");
+                res = input.nextLine();
+            }while(res.length()<1||res.length()>30);
+            if(comprobarNumerosEnString(res)){
+                valido = false;
+            }
+            if (valido = true) departamento.setLoc(res);
+        }while(!valido);
+        postDep(departamento);
+    }
+    static void borrarDepartamento(){
+        String res = null;
+        Departamentos departamento = null;
+        try {
+            do {
+                System.out.println("Introduce numero de departamento: ");
+                res = input.nextLine();
+            }while(!comprobarExisteDepartamento(Integer.parseInt(res)));
+            departamento = getDepartamento(Integer.parseInt(res));
+        }catch(NumberFormatException nfe) {
+            System.out.println("ERROR: Debe introducir solo números...");
+            System.out.println("Pulsa Intro para continuar ...");
+            input.nextLine();
+        }
+        delDep(departamento);
+    }
+    static void postDep(Departamentos departamento){
+        Session session = HibernateUtil.getCurrentSession();
+        session.beginTransaction();
+        session.save(departamento);
+        session.getTransaction().commit();
+        session.close();
+    }
+    static void delDep(Departamentos departamento){
+        Session session = HibernateUtil.getCurrentSession();
+        session.beginTransaction();
+        session.delete(departamento);
+        session.getTransaction().commit();
+        session.close();
+    }
+    static Departamentos getDepartamento(int deptno){
+        Session session = HibernateUtil.getCurrentSession();
+        Departamentos departamento = session.get(Departamentos.class, deptno);
+        session.close();
+        return departamento;
+    }
     static boolean comprobarExisteDepartamento(int deptno){
         boolean existe = true;
         Departamentos departamento = getDepartamento(deptno);
@@ -433,21 +429,25 @@ public class NoSePOP {
         }
         return existe;
     }
+    //DEPARTAMENTOS
 
-    static Departamentos getDepartamento(int deptno){
-        Session session = HibernateUtil.getCurrentSession();
-        Departamentos departamento = session.get(Departamentos.class, deptno);
-        session.close();
-        return departamento;
+
+
+
+    //UTILS
+    static boolean comprobarNumerosEnString(String res){
+        boolean numeros = false;
+        for(int i = 0; i<res.length();i++){
+            if(Character.isDigit(res.charAt(i))){
+                System.out.println("ERROR: No puede introducir numeros...");
+                System.out.println("Pulsa Intro para continuar ...");
+                input.nextLine();
+                numeros = true;
+                break;
+            }
+        }
+        return numeros;
     }
-
-    static Empleados getEmpleado(int empno){
-        Session session = HibernateUtil.getCurrentSession();
-        Empleados empleado = session.get(Empleados.class, empno);
-        session.close();
-        return empleado;
-    }
-
     static boolean comprobarFecha(String fecha) {
         boolean formato = true;
         try {
