@@ -1,6 +1,7 @@
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.dialect.AbstractHANADialect;
 import org.hibernate.query.Query;
 import org.hibernate.service.ServiceRegistry;
 
@@ -161,25 +162,27 @@ public class NoSePOP {
         }while(!valido);
         //ENAME
         do{
+            valido=true;
             do {
                 System.out.println("Introduce nombre de empleado: ");
                 res = input.nextLine();
             }while(res.length()<1||res.length()>30);
-            if(!comprobarNumerosEnString(res)){
+            if(comprobarNumerosEnString(res)){
                 valido = false;
             }
             if (valido = true) emp.setEname(res);
         }while(!valido);
         //JOB
         do{
+            valido=true;
             do {
                 System.out.println("Introduce job de empleado: ");
                 res = input.nextLine();
             }while(res.length()<1||res.length()>30);
-            if(!comprobarNumerosEnString(res)){
+            if(comprobarNumerosEnString(res)){
                 valido = false;
             }
-            if (valido = true) emp.setEname(res);
+            if (valido = true) emp.setJob(res);
         }while(!valido);
         //MGR
         valido = false;
@@ -201,6 +204,7 @@ public class NoSePOP {
             res = input.nextLine();
             valido=comprobarFecha(res);
         }while(!valido);
+        emp.setHiredate(java.sql.Date.valueOf(res));
         //SAL
         do {
             try {
@@ -244,6 +248,20 @@ public class NoSePOP {
                 input.nextLine();
             }
         }while(!valido);
+
+
+        System.out.println("EMPNO: " + emp.getEmpno());
+        System.out.println("ENAME: " + emp.getEname());
+        System.out.println("JOB: " + emp.getJob());
+        System.out.println("MGR: " + emp.getMgr());
+        System.out.println("HIREDATE: " + emp.getHiredate());
+        System.out.println("SAL: " + emp.getSal());
+        System.out.println("COMM: " + emp.getComm());
+        System.out.println("DEPTNO: " + emp.getDeptno());
+
+
+
+
         postEmp(emp);
     }
 
@@ -272,11 +290,16 @@ public class NoSePOP {
         return numeros;
     }
 
-    static boolean comprobarExisteEmpleado(int id){
-        boolean existe = false;
-        //TODO
-        if(existe){
-            System.out.println("ERROR: El empleado ya se encuentra en la base de datos...");
+    static boolean comprobarExisteEmpleado(int empno){
+        boolean existe = true;
+        Empleados empleado = getEmpleado(empno);
+        if(empleado==null){
+            System.out.println("El empleado no se encuentra en la base de datos...");
+            System.out.println("Pulsa Intro para continuar ...");
+            input.nextLine();
+            existe = false;
+        }else{
+            System.out.println("El empleado ya se encuentra en la base de datos...");
             System.out.println("Pulsa Intro para continuar ...");
             input.nextLine();
         }
@@ -285,13 +308,30 @@ public class NoSePOP {
 
     static boolean comprobarExisteDepartamento(int deptno){
         boolean existe = true;
-        //TODO
-        if(!existe){
-            System.out.println("ERROR: El departamento no se encuentra en la base de datos...");
+        Departamentos departamento = getDepartamento(deptno);
+        if(departamento==null){
+            System.out.println("El departamento no se encuentra en la base de datos...");
             System.out.println("Pulsa Intro para continuar ...");
             input.nextLine();
+            existe = false;
         }
         return existe;
+    }
+
+    static Departamentos getDepartamento(int deptno){
+        HibernateUtil.buildSessionFactory();
+        Session session = HibernateUtil.getCurrentSession();
+        Departamentos departamento = session.get(Departamentos.class, deptno);
+        session.close();
+        return departamento;
+    }
+
+    static Empleados getEmpleado(int empno){
+        HibernateUtil.buildSessionFactory();
+        Session session = HibernateUtil.getCurrentSession();
+        Empleados empleado = session.get(Empleados.class, empno);
+        session.close();
+        return empleado;
     }
 
     static boolean comprobarFecha(String fecha) {

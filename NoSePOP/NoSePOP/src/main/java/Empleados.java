@@ -18,7 +18,7 @@ public class Empleados {
     @Column(name = "mgr")
     private Integer mgr;
     @Column(name = "hiredate")
-    private String hiredate;
+    private java.sql.Date hiredate;
     @Column(name = "sal")
     private Integer sal;
     @Column(name = "comm")
@@ -26,7 +26,7 @@ public class Empleados {
     @Column(name = "deptno")
     private Integer deptno;
 
-    public Empleados(int empno, String ename, String job, Integer mgr, String hiredate, Integer sal, Integer comm, Integer deptno) {
+    public Empleados(int empno, String ename, String job, Integer mgr, java.sql.Date hiredate, Integer sal, Integer comm, Integer deptno) {
         this.empno = empno;
         this.ename = ename;
         this.job = job;
@@ -72,11 +72,11 @@ public class Empleados {
         this.mgr = mgr;
     }
 
-    public String getHiredate() {
+    public java.sql.Date getHiredate() {
         return hiredate;
     }
 
-    public void setHiredate(String hiredate) {
+    public void setHiredate(java.sql.Date hiredate) {
         this.hiredate = hiredate;
     }
 
