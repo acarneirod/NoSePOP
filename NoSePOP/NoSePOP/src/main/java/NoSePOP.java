@@ -26,7 +26,10 @@ public class NoSePOP {
     private static SessionFactory sessionFactory;
     private static ServiceRegistry serviceRegistry;
     private static Scanner input;
-    
+
+    /**
+     * Método main del programa.
+     */
     public static void main(String[] args) {
         HibernateUtil.buildSessionFactory();
         HibernateUtil.openSession();
@@ -46,7 +49,7 @@ public class NoSePOP {
                     break;
                 case 2:
                     System.out.println("\n\tINTRODUCIR EMPLEADO ...");
-                    añadirEmpleado();
+                    insertarEmpleado();
                     break;
                 case 3:
                     System.out.println("\n\tELIMINAR EMPLEADO ...");
@@ -58,14 +61,14 @@ public class NoSePOP {
                     break;
                 case 5:
                     System.out.println("\n\tINTRODUCIR DEPARTAMENTO ...");
-                    añadirDepartamento();
+                    insertarDepartamento();
                     break;
                 case 6:
                     System.out.println("\n\tELIMINAR DEPARTAMENTO ...");
                     borrarDepartamento();
                     break;
                 case 7:
-                    System.out.println("GRACIAS POR UTILIZAR EL PROGRAMA, BUEN DÍA. VUELVE PRONTO!!!");
+                    System.out.println("GRACIAS POR UTILIZAR EL PROGRAMA, BUEN DIA. VUELVE PRONTO!!!");
                     break;
             }
         }while(opcion!=7);
@@ -76,6 +79,11 @@ public class NoSePOP {
         HibernateUtil.closeSessionFactory();
     }
 
+    /**
+     * Menú que muestra las opciones con las que el usuario puede interactuar
+     *
+     * @return el valor de la opción
+     */
     static int menu(){
         int opcion = -1;
         boolean valido = false;
@@ -112,6 +120,9 @@ public class NoSePOP {
     }
 
     //LISTADOS
+    /**
+     * Método que muestra un listado de la tabla empleados.
+     */
     static void listadoTablaEmpleados(){
         Session sesion = HibernateUtil.getCurrentSession();
         Query query = sesion.createQuery("FROM Empleados");
@@ -130,6 +141,9 @@ public class NoSePOP {
         System.out.println("---------------------------");
     }
 
+    /**
+     * Método que muestra un listado de la tabla Departamentos.
+     */
     static void listadoTablaDepartamentos(){
         Session sesion = HibernateUtil.getCurrentSession();
         Query query = sesion.createQuery("FROM Departamentos");
@@ -143,6 +157,9 @@ public class NoSePOP {
         System.out.println("---------------------------");
     }
 
+    /**
+     * Método que muestra un listado de los atributos empno,ename,sal,dname y loc dependiendo de cada empleado.
+     */
     static void mostrarGeneral(){
         Session sesion = HibernateUtil.getCurrentSession();
         Query query = sesion.createQuery("FROM Empleados");
@@ -163,7 +180,10 @@ public class NoSePOP {
 
 
     //EMPLEADOS
-    static void añadirEmpleado(){
+    /**
+     * Método que solicita y comprueba los atributos de un empleado a insertar.
+     */
+    static void insertarEmpleado(){
         String res = null;
         boolean valido;
 
@@ -275,6 +295,10 @@ public class NoSePOP {
         }while(!valido);
         postEmp(emp);
     }
+
+    /**
+     * Método que solicita y comprueba el numero de empleado de un empleado a eliminar.
+     */
     static void borrarEmpleado(){
         String res = null;
         Empleados emp = null;
@@ -291,6 +315,12 @@ public class NoSePOP {
         }
         delEmp(emp);
     }
+
+    /**
+     * Método que inserta un empleado en la base de datos.
+     *
+     * @param emp Empleado a insertar.
+     */
     static void postEmp(Empleados emp){
         Session session = HibernateUtil.getCurrentSession();
         session.beginTransaction();
@@ -298,6 +328,12 @@ public class NoSePOP {
         session.getTransaction().commit();
         session.close();
     }
+
+    /**
+     * Método que elimina un empleado de la base de datos.
+     *
+     * @param emp Empleado a eliminar.
+     */
     static void delEmp(Empleados emp){
         Session session = HibernateUtil.getCurrentSession();
         session.beginTransaction();
@@ -305,12 +341,26 @@ public class NoSePOP {
         session.getTransaction().commit();
         session.close();
     }
+
+    /**
+     * Método que busca un empleado de la base de datos.
+     *
+     * @param empno Empleado a buscar.
+     * @return Empleado encontrado.
+     */
     static Empleados getEmpleado(int empno){
         Session session = HibernateUtil.getCurrentSession();
         Empleados empleado = session.get(Empleados.class, empno);
         session.close();
         return empleado;
     }
+
+    /**
+     * Método que comprueba si un empleado existe en la base de datos.
+     *
+     * @param empno Empleado a buscar.
+     * @return Empleado existe o no existe.
+     */
     static boolean comprobarExisteEmpleado(int empno){
         boolean existe = true;
         Empleados empleado = getEmpleado(empno);
@@ -331,7 +381,10 @@ public class NoSePOP {
 
 
     //DEPARTAMENTOS
-    static void añadirDepartamento(){
+    /**
+     * Método que solicita y comprueba los atributos de un departamento a insertar.
+     */
+    static void insertarDepartamento(){
         String res = null;
         boolean valido;
 
@@ -378,6 +431,10 @@ public class NoSePOP {
         }while(!valido);
         postDep(departamento);
     }
+
+    /**
+     * Método que solicita y comprueba el numero de departamento de un departamento a eliminar.
+     */
     static void borrarDepartamento(){
         String res = null;
         Departamentos departamento = null;
@@ -394,6 +451,12 @@ public class NoSePOP {
         }
         delDep(departamento);
     }
+
+    /**
+     * Método que inserta un departamento en la base de datos.
+     *
+     * @param departamento Departamento a insertar.
+     */
     static void postDep(Departamentos departamento){
         Session session = HibernateUtil.getCurrentSession();
         session.beginTransaction();
@@ -401,6 +464,12 @@ public class NoSePOP {
         session.getTransaction().commit();
         session.close();
     }
+
+    /**
+     * Método que elimina un departamento de la base de datos.
+     *
+     * @param departamento Departamento a eliminar.
+     */
     static void delDep(Departamentos departamento){
         Session session = HibernateUtil.getCurrentSession();
         session.beginTransaction();
@@ -408,12 +477,26 @@ public class NoSePOP {
         session.getTransaction().commit();
         session.close();
     }
+
+    /**
+     * Método que busca un departamento de la base de datos.
+     *
+     * @param deptno Departamento a buscar.
+     * @return Departamento encontrado.
+     */
     static Departamentos getDepartamento(int deptno){
         Session session = HibernateUtil.getCurrentSession();
         Departamentos departamento = session.get(Departamentos.class, deptno);
         session.close();
         return departamento;
     }
+
+    /**
+     * Método que comprueba si un departamento existe en la base de datos.
+     *
+     * @param deptno Departamento a buscar.
+     * @return Departamento existe o no existe.
+     */
     static boolean comprobarExisteDepartamento(int deptno){
         boolean existe = true;
         Departamentos departamento = getDepartamento(deptno);
@@ -435,6 +518,12 @@ public class NoSePOP {
 
 
     //UTILS
+    /**
+     * Método que comprueba si String contiene números.
+     *
+     * @param res String a comprobar.
+     * @return Contiene numeros o no.
+     */
     static boolean comprobarNumerosEnString(String res){
         boolean numeros = false;
         for(int i = 0; i<res.length();i++){
@@ -448,6 +537,13 @@ public class NoSePOP {
         }
         return numeros;
     }
+
+    /**
+     * Método que comprueba si una fecha(String) está en el formato correcto.
+     *
+     * @param fecha String a comprobar.
+     * @return Formato correcto o no.
+     */
     static boolean comprobarFecha(String fecha) {
         boolean formato = true;
         try {
