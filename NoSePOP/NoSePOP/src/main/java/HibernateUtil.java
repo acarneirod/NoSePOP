@@ -21,7 +21,7 @@ public class HibernateUtil {
         propiedades.put(Environment.USER,"acarneiro");
         propiedades.put(Environment.PASS, "acarneiro@Servo2021*");
         propiedades.put(Environment.DIALECT, "org.hibernate.dialect.PostgreSQLDialect");
-        propiedades.put(Environment.SHOW_SQL, "true");
+        propiedades.put(Environment.SHOW_SQL, "false");
 
         Configuration configuration = new Configuration();
         configuration.setProperties(propiedades);
@@ -33,6 +33,8 @@ public class HibernateUtil {
 
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(
                 configuration.getProperties()).build();
+
+
         sessionFactory = configuration.buildSessionFactory(serviceRegistry);
     }
 

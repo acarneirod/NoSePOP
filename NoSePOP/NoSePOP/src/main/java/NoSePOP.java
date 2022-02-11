@@ -29,6 +29,8 @@ public class NoSePOP {
     private static Scanner input;
     
     public static void main(String[] args) {
+        HibernateUtil.buildSessionFactory();
+        HibernateUtil.openSession();
         input = new Scanner(System.in);
         int opcion;
         do {
@@ -53,6 +55,7 @@ public class NoSePOP {
                     break;
                 case 4:
                     System.out.println("\n\tMOSTRANDO INFORMACIÓN DE LA TABLA EMPLEADOS Y LA TABLA DEPARTAMENTOS");
+                    mostrarGeneral();
                 case 5:
                     System.out.println("\n\tFUNCIONALIDAD EXTRA.");
                 case 6:
@@ -64,6 +67,7 @@ public class NoSePOP {
         input.nextLine();
         // Se cierra la conexión a la BBDD y la entrada por teclado.
         input.close();
+        HibernateUtil.closeSessionFactory();
     }
 
     static int menu(){
@@ -102,8 +106,6 @@ public class NoSePOP {
 
     //METHODS
     static void listadoTablaEmpleados(){
-        HibernateUtil.buildSessionFactory();
-        HibernateUtil.openSession();
         Session sesion = HibernateUtil.getCurrentSession();
         Query query = sesion.createQuery("FROM Empleados");
         ArrayList<Empleados> empleados = (ArrayList<Empleados>) query.list();
@@ -119,12 +121,9 @@ public class NoSePOP {
             System.out.println("DEPTNO: " + empleados.get(i).getDeptno());
         }
         System.out.println("---------------------------");
-        HibernateUtil.closeSessionFactory();
     }
 
     static void listadoTablaDepartamentos(){
-        HibernateUtil.buildSessionFactory();
-        HibernateUtil.openSession();
         Session sesion = HibernateUtil.getCurrentSession();
         Query query = sesion.createQuery("FROM Departamentos");
         ArrayList<Departamentos> departamentos = (ArrayList<Departamentos>) query.list();
@@ -135,7 +134,22 @@ public class NoSePOP {
             System.out.println("LOC: " + departamentos.get(i).getLoc());
         }
         System.out.println("---------------------------");
-        HibernateUtil.closeSessionFactory();
+    }
+
+    static void mostrarGeneral(){
+        Session sesion = HibernateUtil.getCurrentSession();
+        Query query = sesion.createQuery("FROM Empleados");
+        ArrayList<Empleados> empleados = (ArrayList<Empleados>) query.list();
+        for(int i = 0; i<empleados.size();i++){
+            System.out.println("---------------------------");
+            System.out.println("EMPNO: " + empleados.get(i).getEmpno());
+            System.out.println("ENAME: " + empleados.get(i).getEname());
+            System.out.println("SAL: " + empleados.get(i).getSal());
+            Departamentos departamento = getDepartamento(empleados.get(i).getDeptno());
+            System.out.println("DNAME: " + departamento.getDname());
+            System.out.println("LOC: " + departamento.getLoc());
+        }
+        System.out.println("---------------------------");
     }
 
     static void borrarEmpleado(){
@@ -269,7 +283,6 @@ public class NoSePOP {
     }
 
     static void delEmp(Empleados emp){
-        HibernateUtil.buildSessionFactory();
         Session session = HibernateUtil.getCurrentSession();
         session.beginTransaction();
         session.delete(emp);
@@ -278,7 +291,6 @@ public class NoSePOP {
     }
 
     static void postEmp(Empleados emp){
-        HibernateUtil.buildSessionFactory();
         Session session = HibernateUtil.getCurrentSession();
         session.beginTransaction();
         session.save(emp);
@@ -331,7 +343,6 @@ public class NoSePOP {
     }
 
     static Departamentos getDepartamento(int deptno){
-        HibernateUtil.buildSessionFactory();
         Session session = HibernateUtil.getCurrentSession();
         Departamentos departamento = session.get(Departamentos.class, deptno);
         session.close();
@@ -339,7 +350,6 @@ public class NoSePOP {
     }
 
     static Empleados getEmpleado(int empno){
-        HibernateUtil.buildSessionFactory();
         Session session = HibernateUtil.getCurrentSession();
         Empleados empleado = session.get(Empleados.class, empno);
         session.close();
