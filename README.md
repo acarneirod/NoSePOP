@@ -59,7 +59,7 @@ En este caso hemos utilizado PostgreSQL para el manejo de la base de datos. El c
 ```
 Se ha creado una clase HibernateUtil con toda la configuracion y métodos estándar de Hibernate, además se ha creado una clase especificamente mapeada por cada tabla que queremos extrar de la base de datos utilizando Hibernate.
 
-Guia completa: [Hibernate ORM](#hibernate.md)
+Guia completa: [Hibernate ORM](https://github.com/acarneirod/NoSePOP/blob/main/Hibernate.md)
 
 ## Java Swing
 Se ha creado una interfaz especifica por cada opción disponible en el programa. Además se ha creado una a mayores para mensajes de informacion del programa.
