@@ -51,7 +51,7 @@ public class IntroducirEmpleado extends JFrame{
                         new INFO("El MGR solo puede contener numeros!");
                         valido=false;}
                     if(!NoSePOP.comprobarFecha(String.valueOf(textArea5.getText()))){
-                        new INFO("El formato introducido no es correcto. Formato correcto: yyyy-MM-dd!");
+                        new INFO("El formato de fecha introducido no es correcto. Formato correcto: yyyy-MM-dd!");
                         valido=false;}
                     if(NoSePOP.comprobarLetrasEnString(String.valueOf(textArea6.getText()))){
                         new INFO("El SAL solo puede contener numeros!");
