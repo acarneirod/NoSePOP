@@ -57,7 +57,7 @@ En este caso hemos utilizado PostgreSQL para el manejo de la base de datos. El c
             <version>42.3.1 </version>
         </dependency>
 ```
-Guia completa: [PostgreSQL Database](https://github.com/acarneirod/NoSePOP/blob/main/Database.md)
+Guia completa: [PostgreSQL Database](https://github.com/acarneirod/NoSePOP/blob/main/DataBase.md)
 
 Se ha creado una clase HibernateUtil con toda la configuracion y métodos estándar de Hibernate, además se ha creado una clase especificamente mapeada por cada tabla que queremos extrar de la base de datos utilizando Hibernate.
 
