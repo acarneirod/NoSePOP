@@ -59,7 +59,7 @@ public class MainFrame extends JFrame {
         eliminarDepartamentoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new TablaEmpleados();
+                new EliminarDepartamento();
             }
         });
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

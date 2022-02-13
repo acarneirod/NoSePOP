@@ -2,19 +2,19 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class EliminarEmpleado extends JFrame{
+public class EliminarDepartamento extends JFrame{
     private JTextArea textArea1;
-    private JPanel mainPanel;
     private JButton ELIMINARButton;
+    private JPanel mainPanel;
 
-    public EliminarEmpleado(){
+    public EliminarDepartamento() {
         setContentPane(mainPanel);
-        setTitle("Eliminar empleado");
-        setSize(480,150);
+        setTitle("Eliminar departamento");
+        setSize(480, 150);
         ELIMINARButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Empleados emp = null;
+                Departamentos dep = null;
                 boolean valido=true;
 
                 if(String.valueOf(textArea1.getText()).isBlank()||String.valueOf(textArea1.getText()).isEmpty()){
@@ -29,20 +29,18 @@ public class EliminarEmpleado extends JFrame{
                     new INFO("No puedes introducir más de 30 caractéres!");
                     valido=false;
                 }
-                if(!NoSePOP.comprobarExisteEmpleado(Integer.parseInt(String.valueOf(textArea1.getText())))){
-                    new INFO("El empleado no se encuentra en la base de datos!");
+                if(!NoSePOP.comprobarExisteDepartamento(Integer.parseInt(String.valueOf(textArea1.getText())))){
+                    new INFO("El departamento no se encuentra en la base de datos!");
                     valido=false;
                 }
                 if(valido){
-                    emp = NoSePOP.getEmpleado(Integer.parseInt(String.valueOf(textArea1.getText())));
-                    new INFO("El empleado ha sido eliminado!");
-                    NoSePOP.delEmp(emp);
+                    dep = NoSePOP.getDepartamento(Integer.parseInt(String.valueOf(textArea1.getText())));
+                    new INFO("El departamento ha sido eliminado!");
+                    NoSePOP.delDep(dep);
                     dispose();
                 }
             }
         });
         setVisible(true);
     }
-
-
 }
