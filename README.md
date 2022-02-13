@@ -59,6 +59,8 @@ En este caso hemos utilizado PostgreSQL para el manejo de la base de datos. El c
 ```
 Se ha creado una clase HibernateUtil con toda la configuracion y métodos estándar de Hibernate, además se ha creado una clase especificamente mapeada por cada tabla que queremos extrar de la base de datos utilizando Hibernate.
 
+Guia completa: [Hibernate ORM](#hibernate.md)
+
 ## Java Swing
 Se ha creado una interfaz especifica por cada opción disponible en el programa. Además se ha creado una a mayores para mensajes de informacion del programa.
 El programa termina unicamente cuando cierras la ventana de menú principal. Mientras el programa se ejecute está continuará abierta, permitiendo el uso de varias opciónes a la vez, como por ejemplo la visualizacion de la tabla empleados y la insercion de un empleado. Cada vez que se actualice la base de datos se deberán cerrar y volver a abrir las ventanas de visualizacion de cada tabla en uso, de no ser asi la tabla mostrará el contenido desactualizado.
