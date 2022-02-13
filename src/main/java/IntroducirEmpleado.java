@@ -34,26 +34,50 @@ public class IntroducirEmpleado extends JFrame{
                 if(String.valueOf(textArea7.getText()).isBlank()||String.valueOf(textArea7.getText()).isEmpty()){valido=false;}
                 if(String.valueOf(textArea8.getText()).isBlank()||String.valueOf(textArea8.getText()).isEmpty()){valido=false;}
                 if(valido!=false){
-                    if(NoSePOP.comprobarExisteEmpleado(Integer.parseInt(String.valueOf(textArea1.getText())))){valido=false;}
+                    if(NoSePOP.comprobarExisteEmpleado(Integer.parseInt(String.valueOf(textArea1.getText())))){
+                        new INFO("El empleado ya se encuentra en la base de datos!");
+                        valido=false;}
 
-                    if(NoSePOP.comprobarLetrasEnString(String.valueOf(textArea1.getText()))){valido=false;}
-                    if(NoSePOP.comprobarNumerosEnString(String.valueOf(textArea2.getText()))){valido=false;}
-                    if(NoSePOP.comprobarNumerosEnString(String.valueOf(textArea3.getText()))){valido=false;}
-                    if(NoSePOP.comprobarLetrasEnString(String.valueOf(textArea4.getText()))){valido=false;}
-                    if(!NoSePOP.comprobarFecha(String.valueOf(textArea5.getText()))){valido=false;}
-                    if(NoSePOP.comprobarLetrasEnString(String.valueOf(textArea6.getText()))){valido=false;}
-                    if(NoSePOP.comprobarLetrasEnString(String.valueOf(textArea7.getText()))){valido=false;}
-                    if(NoSePOP.comprobarLetrasEnString(String.valueOf(textArea8.getText()))){valido=false;}
+                    if(NoSePOP.comprobarLetrasEnString(String.valueOf(textArea1.getText()))){
+                        new INFO("El ENUM solo puede contener numeros!");
+                        valido=false;}
+                    if(NoSePOP.comprobarNumerosEnString(String.valueOf(textArea2.getText()))){
+                        new INFO("El ENAME solo puede contener letras!");
+                        valido=false;}
+                    if(NoSePOP.comprobarNumerosEnString(String.valueOf(textArea3.getText()))){
+                        new INFO("El JOB solo puede contener letras!");
+                        valido=false;}
+                    if(NoSePOP.comprobarLetrasEnString(String.valueOf(textArea4.getText()))){
+                        new INFO("El MGR solo puede contener numeros!");
+                        valido=false;}
+                    if(!NoSePOP.comprobarFecha(String.valueOf(textArea5.getText()))){
+                        new INFO("El formato introducido no es correcto. Formato correcto: yyyy-MM-dd!");
+                        valido=false;}
+                    if(NoSePOP.comprobarLetrasEnString(String.valueOf(textArea6.getText()))){
+                        new INFO("El SAL solo puede contener numeros!");
+                        valido=false;}
+                    if(NoSePOP.comprobarLetrasEnString(String.valueOf(textArea7.getText()))){
+                        new INFO("El COMM solo puede contener numeros!");
+                        valido=false;}
+                    if(NoSePOP.comprobarLetrasEnString(String.valueOf(textArea8.getText()))){
+                        new INFO("El DEPTNO solo puede contener numeros!");
+                        valido=false;}
 
-                    if(!NoSePOP.comprobarExisteDepartamento(Integer.parseInt(String.valueOf(textArea8.getText())))){valido=false;}
+                    if(!NoSePOP.comprobarExisteDepartamento(Integer.parseInt(String.valueOf(textArea8.getText())))){
+                        new INFO("El DEPTNO introducido no se corresponde con ningun departamento!");
+                        valido=false;}
 
-                    if(String.valueOf(textArea2.getText()).length()<1||String.valueOf(textArea2.getText()).length()>30){valido=false;}
-                    if(String.valueOf(textArea3.getText()).length()<1||String.valueOf(textArea3.getText()).length()>30){valido=false;}
+                    if(String.valueOf(textArea2.getText()).length()<1||String.valueOf(textArea2.getText()).length()>30){
+                        new INFO("El limite del ENAME se encuentra en 30 caracteres");
+                        valido=false;}
+                    if(String.valueOf(textArea3.getText()).length()<1||String.valueOf(textArea3.getText()).length()>30){
+                        new INFO("El limite del JOB se encuentra en 30 caracteres!");
+                        valido=false;}
 
-                }
-                if(valido==false){
-                    new INFO("Los datos introducidos no son correctos!");
                 }else{
+                    new INFO("Debe rellenar todos los campos!");
+                }
+                if(valido){
                     emp.setEmpno(Integer.parseInt(String.valueOf(textArea1.getText())));
                     emp.setEname(String.valueOf(textArea2.getText()));
                     emp.setJob(String.valueOf(textArea3.getText()));

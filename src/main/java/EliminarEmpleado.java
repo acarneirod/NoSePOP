@@ -10,7 +10,7 @@ public class EliminarEmpleado extends JFrame{
     public EliminarEmpleado(){
         setContentPane(mainPanel);
         setTitle("Introducir empleado");
-        setSize(480,300);
+        setSize(480,150);
         ELIMINARButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
