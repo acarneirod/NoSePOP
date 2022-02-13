@@ -37,6 +37,7 @@ public class EliminarEmpleado extends JFrame{
                     emp = NoSePOP.getEmpleado(Integer.parseInt(String.valueOf(textArea1.getText())));
                     new INFO("El empleado ha sido eliminado!");
                     NoSePOP.delEmp(emp);
+                    dispose();
                 }
             }
         });

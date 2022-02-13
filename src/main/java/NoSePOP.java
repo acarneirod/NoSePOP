@@ -204,8 +204,6 @@ public class NoSePOP {
                 emp.setEmpno(Integer.parseInt(res));
             }catch(NumberFormatException nfe) {
                 System.out.println("ERROR: Debe introducir solo números...");
-                System.out.println("Pulsa Intro para continuar ...");
-                input.nextLine();
             }
         }while(!valido);
         //ENAME
@@ -240,8 +238,6 @@ public class NoSePOP {
                 res = input.nextLine();
             }catch(NumberFormatException nfe) {
                 System.out.println("ERROR: Debe introducir solo números...");
-                System.out.println("Pulsa Intro para continuar ...");
-                input.nextLine();
             }
             valido=true;
             emp.setMgr(Integer.parseInt(res));
@@ -260,8 +256,6 @@ public class NoSePOP {
                 res = input.nextLine();
             }catch(NumberFormatException nfe) {
                 System.out.println("ERROR: Debe introducir solo números...");
-                System.out.println("Pulsa Intro para continuar ...");
-                input.nextLine();
             }
             valido=true;
             emp.setSal(Integer.parseInt(res));
@@ -274,8 +268,6 @@ public class NoSePOP {
                 res = input.nextLine();
             }catch(NumberFormatException nfe) {
                 System.out.println("ERROR: Debe introducir solo números...");
-                System.out.println("Pulsa Intro para continuar ...");
-                input.nextLine();
             }
             valido=true;
             emp.setComm(Integer.parseInt(res));
@@ -292,8 +284,6 @@ public class NoSePOP {
                 emp.setDeptno(Integer.parseInt(res));
             }catch(NumberFormatException nfe) {
                 System.out.println("ERROR: Debe introducir solo números...");
-                System.out.println("Pulsa Intro para continuar ...");
-                input.nextLine();
             }
         }while(!valido);
         postEmp(emp);
@@ -313,8 +303,6 @@ public class NoSePOP {
             emp = getEmpleado(Integer.parseInt(res));
         }catch(NumberFormatException nfe) {
             System.out.println("ERROR: Debe introducir solo números...");
-            System.out.println("Pulsa Intro para continuar ...");
-            input.nextLine();
         }
         delEmp(emp);
     }
@@ -369,13 +357,9 @@ public class NoSePOP {
         Empleados empleado = getEmpleado(empno);
         if(empleado==null){
             System.out.println("El empleado no se encuentra en la base de datos...");
-            System.out.println("Pulsa Intro para continuar ...");
-            input.nextLine();
             existe = false;
         }else{
             System.out.println("El empleado se encuentra en la base de datos...");
-            System.out.println("Pulsa Intro para continuar ...");
-            input.nextLine();
         }
         return existe;
     }
@@ -404,8 +388,6 @@ public class NoSePOP {
                 departamento.setDeptno(Integer.parseInt(res));
             }catch(NumberFormatException nfe) {
                 System.out.println("ERROR: Debe introducir solo números...");
-                System.out.println("Pulsa Intro para continuar ...");
-                input.nextLine();
             }
         }while(!valido);
         //DNAME
@@ -449,8 +431,6 @@ public class NoSePOP {
             departamento = getDepartamento(Integer.parseInt(res));
         }catch(NumberFormatException nfe) {
             System.out.println("ERROR: Debe introducir solo números...");
-            System.out.println("Pulsa Intro para continuar ...");
-            input.nextLine();
         }
         delDep(departamento);
     }
@@ -505,13 +485,9 @@ public class NoSePOP {
         Departamentos departamento = getDepartamento(deptno);
         if(departamento==null){
             System.out.println("El departamento no se encuentra en la base de datos...");
-            System.out.println("Pulsa Intro para continuar ...");
-            input.nextLine();
             existe = false;
         }else{
             System.out.println("El departamento se encuentra en la base de datos...");
-            System.out.println("Pulsa Intro para continuar ...");
-            input.nextLine();
         }
         return existe;
     }
@@ -531,9 +507,7 @@ public class NoSePOP {
         boolean numeros = false;
         for(int i = 0; i<res.length();i++){
             if(Character.isDigit(res.charAt(i))){
-                System.out.println(": No puede introducir numeros...");
-                System.out.println("Pulsa Intro para continuar ...");
-                input.nextLine();
+                System.out.println("ERROR: No puede introducir numeros...");
                 numeros = true;
                 break;
             }
@@ -552,8 +526,6 @@ public class NoSePOP {
         for(int i = 0; i<res.length();i++){
             if(Character.isLetter(res.charAt(i))){
                 System.out.println("ERROR: No puede introducir numeros...");
-                System.out.println("Pulsa Intro para continuar ...");
-                input.nextLine();
                 letras = true;
                 break;
             }
