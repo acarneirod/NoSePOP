@@ -104,6 +104,10 @@ Así, podemos simplemente establecer una sesión con la Base de Datos y enviarle
 
 > ![Figure 3](https://raw.githubusercontent.com/JGuilmar/fp/main/NoSePOP/figura4.PNG)
 
+Se ha creado una clase HibernateUtil con toda la configuracion y métodos estándar de Hibernate, además se ha creado una clase especificamente mapeada por cada tabla que queremos extrar de la base de datos utilizando Hibernate.
+
+Guia completa: [Hibernate ORM](https://github.com/acarneirod/NoSePOP/blob/main/Hibernate.md)
+
 ## Código para las funcionalidades de nuestro proyecto y la comunicación con la Base de Datos
 
 ### Java Swing
