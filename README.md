@@ -4,7 +4,7 @@ El repositorio ha sido para poder desarrollar el tercer trabajo de la asignatura
 Se puede clonar y examinar el código. Si los cambios se consideran oportunos, se hará merge con la rama principal.
 
 Integrantes:
-  - [Adrián Carneiro](https://github.com/acarneirod) (Código y Readme)
+  - [Adrián Carneiro](https://github.com/acarneirod) (Código,Readme y presentación)
   - [José Bayona](https://github.com/jguilmar) (Readme Y BBDD)
   - [Javi Cevallos]() (Presentacion)
   - [Samuel Calvo]() (Presentación y BBDD)
