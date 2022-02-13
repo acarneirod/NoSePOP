@@ -44,12 +44,12 @@ Las herramientas que hemos utilizado son las siguientes:
 
 ## Proceso para la realización del proyecto 
 
-- Análisis y creación de la Base de datos.
-- Elegir un IDE para la realización del proyecto.
-- Implementar en el IDE la configuración del mapeo objeto-relacional [Hibernate](https://es.wikipedia.org/wiki/Hibernate).
-- Código para las funcionalidades de nuestro proyecto y la comunicación con la Base de Datos.
-- Pruebas del funcionamiento de nuestro proyecto.
-- Documentación.
+- [x] Análisis y creación de la Base de datos.
+- [x] Elegir un IDE para la realización del proyecto.
+- [x] Implementar en el IDE la configuración del mapeo objeto-relacional [Hibernate](https://es.wikipedia.org/wiki/Hibernate).
+- [x] Código para las funcionalidades de nuestro proyecto y la comunicación con la Base de Datos.
+- [x] Pruebas del funcionamiento de nuestro proyecto.
+- [x] Documentación.
 
 ## Análisis y creación de la Base de Datos
 
@@ -60,11 +60,13 @@ Las herramientas que hemos utilizado son las siguientes:
 
 ## Elegir IDE
 
+Instalar un IDE para abrir el proyecto.
+
 > - [Apache NetBeans](https://netbeans.apache.org/download/nb124/nb124.html)
 > - [IntelliJ IDEA](https://www.jetbrains.com/es-es/idea/download/#section=windows)
 > - [VS Code](https://code.visualstudio.com/Download)
 
-La elección del IDE se explica en el documento [IntelliJ_IDEA.md]().
+El IDE que hemos elegido para la realización de este proyecto es [IntelliJ IDEA](https://ifgeekthen.nttdata.com/es/intellij-idea-una-gran-alternativa-para-programar-en-java).
 
 ## Implementación del Hibernate
 
@@ -115,29 +117,4 @@ Guia completa: [Hibernate ORM](https://github.com/acarneirod/NoSePOP/blob/main/H
 - Se ha creado una interfaz especifica por cada opción disponible en el programa. Además se ha creado una a mayores para mensajes de informacion del programa.
 - El programa termina unicamente cuando cierras la ventana de menú principal. Mientras el programa se ejecute está continuará abierta, permitiendo el uso de varias opciónes a la vez, como por ejemplo la visualizacion de la tabla empleados y la insercion de un empleado. Cada vez que se actualice la base de datos se deberán cerrar y volver a abrir las ventanas de visualizacion de cada tabla en uso, de no ser asi la tabla mostrará el contenido desactualizado.
 - Al insertar o borrar un empleado o departamento de forma satisfactoria, el programa mostrará un mensaje al respecto y cerrará dicha ventana. Si algun dato es incorrecto está permanecerá abierta y saltara un mensaje indicando que campo no es correcto.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
