@@ -15,7 +15,7 @@ Integrantes:
 - [Introdución](#introduci%C3%B3n)
 - [Herramientas utilizadas](#herramientas-utilizadas)
 - [Hibernate ORM](#hibernate-orm)
-
+- [Java Swing](#java-swing)
 
 ## Introdución
 Nuestra empresa NoSePOP esta dedicada a la gestión de una base de datos que contiene los datos de empleados y departamentos pertenecientes a una empresa.
@@ -58,6 +58,11 @@ En este caso hemos utilizado PostgreSQL para el manejo de la base de datos. El c
         </dependency>
 ```
 Se ha creado una clase HibernateUtil con toda la configuracion y métodos estándar de Hibernate, además se ha creado una clase especificamente mapeada por cada tabla que queremos extrar de la base de datos utilizando Hibernate.
+
+## Java Swing
+Se ha creado una interfaz especifica por cada opción disponible en el programa. Además se ha creado una a mayores para mensajes de informacion del programa.
+El programa termina unicamente cuando cierras la ventana de menú principal. Mientras el programa se ejecute está continuará abierta, permitiendo el uso de varias opciónes a la vez, como por ejemplo la visualizacion de la tabla empleados y la insercion de un empleado. Cada vez que se actualice la base de datos se deberán cerrar y volver a abrir las ventanas de visualizacion de cada tabla en uso, de no ser asi la tabla mostrará el contenido desactualizado.
+Al insertar o borrar un empleado o departamento de forma satisfactoria, el programa mostrará un mensaje al respecto y cerrará dicha ventana. Si algun dato es incorrecto está permanecerá abierta y saltara un mensaje indicando que campo no es correcto.
 
 
 
