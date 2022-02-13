@@ -47,7 +47,7 @@ public class MainFrame extends JFrame {
         eliminarEmpleadoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new TablaEmpleados();
+                new EliminarEmpleado();
             }
         });
         introducirDepartamentoButton.addActionListener(new ActionListener() {

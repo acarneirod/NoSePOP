@@ -1,12 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class ERROR{
+public class INFO {
     private JPanel mainPanel;
 
-    public ERROR(String text){
+    public INFO(String text){
         JFrame f = new JFrame();
-        f.setTitle("ERROR");
+        f.setTitle("INFO");
         f.setSize(300, 150);
         f.add(new Label(text));
         f.setVisible(true);

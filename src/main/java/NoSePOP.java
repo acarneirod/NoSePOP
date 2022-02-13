@@ -531,7 +531,7 @@ public class NoSePOP {
         boolean numeros = false;
         for(int i = 0; i<res.length();i++){
             if(Character.isDigit(res.charAt(i))){
-                System.out.println("ERROR: No puede introducir numeros...");
+                System.out.println(": No puede introducir numeros...");
                 System.out.println("Pulsa Intro para continuar ...");
                 input.nextLine();
                 numeros = true;

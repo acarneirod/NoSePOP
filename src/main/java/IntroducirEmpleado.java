@@ -1,8 +1,6 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowStateListener;
 
 public class IntroducirEmpleado extends JFrame{
     private JPanel mainPanel;
@@ -54,7 +52,7 @@ public class IntroducirEmpleado extends JFrame{
 
                 }
                 if(valido==false){
-                    new ERROR("Los datos introducidos no son correctos!");
+                    new INFO("Los datos introducidos no son correctos!");
                 }else{
                     emp.setEmpno(Integer.parseInt(String.valueOf(textArea1.getText())));
                     emp.setEname(String.valueOf(textArea2.getText()));
@@ -65,7 +63,7 @@ public class IntroducirEmpleado extends JFrame{
                     emp.setComm(Integer.parseInt(String.valueOf(textArea7.getText())));
                     emp.setDeptno(Integer.parseInt(String.valueOf(textArea8.getText())));
                     NoSePOP.postEmp(emp);
-                    new ERROR("Empleado insertado!");
+                    new INFO("Empleado insertado!");
                     dispose();
                 }
             }
