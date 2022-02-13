@@ -41,7 +41,23 @@ Las herramientas que hemos utilizado son las siguientes:
 
 
 ## Hibernate ORM
-  
+La implementación de Hibernate en el codigo se ha llevado a cabo mediante el uso de [Maven](https://maven.apache.org/). 
+```
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.6.4.Final</version>
+        </dependency>
+```
+En este caso hemos utilizado PostgreSQL para el manejo de la base de datos. El conector utilizado es:
+```
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.3.1 </version>
+        </dependency>
+```
+Se ha creado una clase HibernateUtil con toda la configuracion y métodos estándar de Hibernate, además se ha creado una clase especificamente mapeada por cada tabla que queremos extrar de la base de datos utilizando Hibernate.
 
 
 
