@@ -11,7 +11,7 @@ Integrantes:
 
 ------------
 
-## Contidos
+## Contenido
 - [Introdución](#introduci%C3%B3n)
 - [Herramientas utilizadas](#herramientas-utilizadas)
 - [Proceso para la realización del proyecto](#proceso-para-la-realización-del-proyecto)
