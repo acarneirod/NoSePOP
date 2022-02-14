@@ -23,8 +23,8 @@ Integrantes:
 
 
 ## Introdución
-Nuestra empresa NoSePOP esta dedicada a la gestión de una base de datos que contiene los datos de empleados y departamentos pertenecientes a una empresa.
-El programa te da la opción de manegar la base de datos tanto por consola como por una intefaz gráfica de tipo Swing. Presenta las siguientes opciones:
+NoSePOP esta dedicada a la gestión de una base de datos que contiene los datos de empleados y departamentos pertenecientes a la empresa.
+El programa te da la opción de manejar la base de datos tanto por consola como por una intefaz gráfica de tipo Swing. Presenta las siguientes opciones:
   - Mostrar tabla Empleados
   - Mostrar tabla Departamentos 
   - Mostrar una combinacion de las tablas Empleados y departamentos
